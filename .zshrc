@@ -67,9 +67,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -85,57 +82,13 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 if [ -f ~/.aliases ]; then
     source ~/.aliases
 fi
 
-# added by Miniconda3 4.7.10 installer
-# >>> conda init >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$(CONDA_REPORT_ERRORS=false '/Users/kyleyan/miniconda3/bin/conda' shell.bash hook 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    \eval "$__conda_setup"
-else
-    if [ -f "/Users/kyleyan/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/kyleyan/miniconda3/etc/profile.d/conda.sh"
-        CONDA_CHANGEPS1=false conda activate base
-    else
-        \export PATH="/Users/kyleyan/miniconda3/bin:$PATH"
-    fi
+if [ -f ~/.zshrc_local ]; then
+    source ~/.zshrc_local
 fi
-unset __conda_setup
-# <<< conda init <<<
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/kyleyan/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kyleyan/google-cloud-sdk/path.zsh.inc'; fi
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/kyleyan/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kyleyan/google-cloud-sdk/completion.zsh.inc'; fi
 
 eval "$(rbenv init -)"
 eval "$(jenv init -)"
@@ -143,9 +96,6 @@ eval "$(nodenv init -)"
 eval "$(pyenv init -)"
 
 export GPG_TTY=$(tty)
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/terraform terraform
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
