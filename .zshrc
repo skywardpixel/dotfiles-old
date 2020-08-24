@@ -90,10 +90,10 @@ if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
 
-eval "$(rbenv init -)"
-eval "$(jenv init -)"
-eval "$(nodenv init -)"
-eval "$(pyenv init -)"
+(( $+commands[rbenv] )) && eval "$(rbenv init -)"
+(( $+commands[jenv] )) && eval "$(jenv init -)"
+(( $+commands[nodenv] )) && eval "$(nodenv init -)"
+(( $+commands[pyenv] )) && eval "$(pyenv init -)"
 
 export GPG_TTY=$(tty)
 
