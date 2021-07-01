@@ -1,12 +1,15 @@
 [user]
 	name = Kyle Yan
 	email = kyleyan@cs.washington.edu
+	signingkey = FDBF08B8C094A41E
 [core]
 	excludesfile = ~/.gitignore
 	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 	trustctime = false
 [gpg]
-	program = gpg
+	program = /usr/local/bin/gpg
+[commit]
+	gpgsign = true
 [alias]
 	adog = log --all --decorate --oneline --graph
 [help]
@@ -26,3 +29,14 @@
 	pushInsteadOf = "git://gist.github.com/"
 [url "git://gist.github.com/"]
 	insteadOf = "gist:"
+[init]
+	defaultBranch = main
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[pull]
+	ff = only
+[http]
+	cookiefile = /Users/kyleyan/.gitcookies

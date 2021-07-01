@@ -1,3 +1,4 @@
+alias ls='ls -G'
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementatio
@@ -30,3 +31,12 @@ ff () { /usr/bin/find . -name "$@" ; }      # ff:       Find file under the curr
 ffs () { /usr/bin/find . -name "$@"'*' ; }  # ffs:      Find file whose name starts with a given string
 ffe () { /usr/bin/find . -name '*'"$@" ; }  # ffe:      Find file whose name ends with a given string
 
+
+h5ai () {
+    docker run -it --rm \
+        -p 80:80 \
+        -v $(pwd):/h5ai \
+        -v /Users/kyleyan/.h5ai:/config \
+        -e TZ=America/Los_Angeles \
+        awesometic/h5ai
+}

@@ -10,7 +10,7 @@ filetype plugin indent on  " Load plugins according to detected filetype.
 syntax on                  " Enable syntax highlighting.
 
 set number
-set colorcolumn=80
+set colorcolumn=120
 
 set autoindent             " Indent according to previous line.
 set expandtab              " Use spaces instead of tabs.
@@ -53,7 +53,6 @@ filetype off
 call plug#begin('~/.vim/plugged')
 
 Plug 'sheerun/vim-polyglot'
-Plug 'google/vim-jsonnet'
 Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 Plug 'scrooloose/nerdtree'
@@ -63,6 +62,7 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'lervag/vimtex'
 Plug 'SirVer/ultisnips'
+Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 
@@ -84,8 +84,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Use C-Left/Right to move between tabs
 nnoremap <C-Left> :bprev<CR>
 nnoremap <C-Right> :bnext<CR>
-
-let g:polyglot_disabled = ['latex']
 
 " vimtex settings
 let g:tex_flavor='latex'
