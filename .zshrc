@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
+
 if [ -f ~/.aliases ]; then
     source ~/.aliases
 fi
@@ -17,25 +20,12 @@ fi
 (( $+commands[jenv] )) && eval "$(jenv init -)"
 (( $+commands[nodenv] )) && eval "$(nodenv init -)"
 (( $+commands[goenv] )) && eval "$(goenv init -)"
-(( $+commands[pyenv] )) && eval "$(pyenv init -)"
+#(( $+commands[pyenv] )) && eval "$(pyenv init -)"
 (( $+commands[direnv] )) && eval "$(direnv hook zsh)"
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 [ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
 
 export GPG_TTY=$(tty)
-
-# This speeds up pasting w/ autosuggest
-# https://github.com/zsh-users/zsh-autosuggestions/issues/238
-pasteinit() {
-  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
-  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
-}
-
-pastefinish() {
-  zle -N self-insert $OLD_SELF_INSERT
-}
-zstyle :bracketed-paste-magic paste-init pasteinit
-zstyle :bracketed-paste-magic paste-finish pastefinish
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -63,6 +53,16 @@ zinit light-mode for \
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma/fast-syntax-highlighting
+zinit snippet OMZP::git
+zinit snippet OMZP::brew
+zinit snippet OMZP::fasd
+zinit snippet OMZP::pyenv
+zinit snippet OMZP::rbenv
+zinit snippet OMZP::jenv
+zinit snippet OMZP::direnv
+zinit snippet OMZP::forklift
+zinit snippet OMZP::keychain
+zinit snippet OMZP::gpg-agent
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
