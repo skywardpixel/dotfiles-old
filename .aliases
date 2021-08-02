@@ -1,4 +1,11 @@
-alias ls='ls -G'
+case $(uname) in
+  Darwin)
+    alias ls='ls -G'
+  ;;
+  Linux)
+    alias ls='ls --color'
+  ;;
+esac
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementatio
